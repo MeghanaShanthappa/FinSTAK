@@ -10,6 +10,15 @@ architecture family does not improve the validation-selected original family,
 and direction prediction does not establish an advantage over the training-majority
 rule. More stocks, events or components did not automatically improve forecasting.
 
+## Architecture at a glance
+
+![FinSTAK architecture: stock-history GRU and source-linked event attention feed direct and correlation-peer event contributions into a valid OHLC decoder.](reports/expanded-study/figures/architecture.png)
+
+The reference model combines each stock's recent market history with eligible
+event evidence and one hop of related-company event contributions. "No learned
+decay" retains the event branch, the null-attention option, and event age limits.
+[Open the vector diagram](reports/expanded-study/figures/architecture.svg).
+
 ## Start here
 
 - [Expanded-study report (PDF)](reports/expanded-study/FinSTAK_Expanded_Dataset_Report.pdf)
@@ -89,6 +98,65 @@ forecast differences are at floating-point rounding scale.
    peers from trailing 60-return correlations >= 0.2; sector routing is an ablation.
 6. The prediction head constructs valid next-session OHLC from body and positive
    wick components in log-price coordinates.
+
+### Embeddings and dimensions
+
+```mermaid
+flowchart TD
+    P["19 market features per session"] --> PL["Learned linear projection: 19 to 32"]
+    PL --> PS["Add company identity: 32 dimensions"]
+    C["Learned company embedding: 32"] --> PS
+    PS --> GRU["Shared GRU: 30 sessions to one 32-dimensional stock summary"]
+
+    T["Event description and supporting quotation"] --> ENC["Frozen EmbeddingGemma 2: 768 dimensions"]
+    ENC --> EL["Learned event projection: 768 to 32"]
+    EL --> ES["Add event category: 32 dimensions"]
+    CAT["Learned category embedding: 32"] --> ES
+
+    GRU -->|"Query"| A["Typed attention: 4 heads, 8 dimensions each, plus null option"]
+    ES -->|"Keys and values"| A
+    A --> SH["Direct event contribution: 32 dimensions"]
+    SH --> PEER["One correlation-peer hop: 32-dimensional contribution"]
+    GRU --> SUM["Add local, direct-event and peer representations"]
+    SH --> SUM
+    PEER --> SUM
+    SUM --> HEAD["LayerNorm and linear prediction head"]
+    HEAD --> DEC["Open and close plus positive upper and lower excursions"]
+    DEC --> OUT["Valid next-session OHLC prices"]
+```
+
+The **768-dimensional text encoder stays frozen**. Its 32-dimensional projection,
+the company/category embeddings, GRU, attention and active prediction layers learn
+from the forecasting loss. Embedding size does not determine a branch's influence.
+Peer links come from trailing stock-return correlations, not text-embedding similarity.
+The diagram shows the reference model; the FinBERT, sector and combined conditions
+are separate experiments.
+
+### Training and checkpoint selection
+
+```mermaid
+flowchart TD
+    SPLIT["Chronological fold: training, validation, test"] --> B["Training batch: 16 dates x 100 stocks"]
+    B --> F["Forward pass: history, eligible events and peer links"]
+    F --> L["Training loss: standardized log-price squared errors"]
+    L --> G["Backpropagation through trainable components"]
+    G --> U["Clip gradient norm to 1; update with AdamW"]
+    U -->|"Next training batch"| B
+    U -->|"After each epoch"| V["Validation OHLC MAE; no weight updates"]
+    V --> CK["Keep the best validation checkpoint"]
+    CK --> STOP{"25 epochs reached or 5 without sufficient improvement?"}
+    STOP -->|"No: next epoch"| B
+    STOP -->|"Yes"| TEST["Load selected checkpoint and score the later test year"]
+    TEST --> ENS["Average price forecasts from seeds 7, 19 and 41"]
+```
+
+Training uses learning rate **0.001** and weight decay **0.001**. The default loss
+equally averages open/close and high/low task losses; it differs from the normalized
+absolute error used to select checkpoints and report price results. Each fold
+refits training-only scalers and excludes examples whose labels cross a split boundary.
+Validation selects checkpoints; test scores do not select them. The three fold
+train/validation end-year pairs are **2019/2020**, **2020/2021**, and **2021/2022**,
+followed by tests in **2021**, **2022**, and **2023**, respectively.
 
 The scale-study event extraction is rule-based. The earlier project also contains
 LLM-extraction components, but these should not be confused with this collection's
