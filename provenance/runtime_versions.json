@@ -1,0 +1,1 @@
+{"CUBLAS_WORKSPACE_CONFIG": ":4096:8", "GPU": "NVIDIA A100 80GB PCIe", "cuda_runtime": "13.0", "cudnn": 91900, "deterministic_training": true, "numpy": "2.4.6", "python": "3.13.7 (main, Mar  3 2026, 12:19:54) [GCC 15.2.0]", "torch": "2.11.0+cu130"}

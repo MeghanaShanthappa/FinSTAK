@@ -1,0 +1,160 @@
+{
+  "passed": true,
+  "models_checked": 17,
+  "direction_tolerance_whole_candle_directly_recomputed": [
+    {
+      "variant": "no_events",
+      "recomputed": {
+        "direction_percent": 50.73164218958611,
+        "within_1_percent": 66.6822429906542,
+        "whole_candle_1_percent": 40.6675567423231
+      },
+      "passed": true
+    },
+    {
+      "variant": "no_decay",
+      "recomputed": {
+        "direction_percent": 51.068090787716955,
+        "within_1_percent": 66.79138851802404,
+        "whole_candle_1_percent": 40.9652870493992
+      },
+      "passed": true
+    },
+    {
+      "variant": "events",
+      "recomputed": {
+        "direction_percent": 51.018691588785046,
+        "within_1_percent": 66.74432576769024,
+        "whole_candle_1_percent": 40.925233644859816
+      },
+      "passed": true
+    },
+    {
+      "variant": "lstm",
+      "recomputed": {
+        "direction_percent": 50.78104138851802,
+        "within_1_percent": 66.73765020026701,
+        "whole_candle_1_percent": 40.81975967957276
+      },
+      "passed": true
+    },
+    {
+      "variant": "tgcn",
+      "recomputed": {
+        "direction_percent": 50.92256341789052,
+        "within_1_percent": 66.69225634178905,
+        "whole_candle_1_percent": 40.63150867823765
+      },
+      "passed": true
+    },
+    {
+      "variant": "isolated",
+      "recomputed": {
+        "direction_percent": 50.52069425901201,
+        "within_1_percent": 66.52069425901202,
+        "whole_candle_1_percent": 40.35647530040053
+      },
+      "passed": true
+    },
+    {
+      "variant": "volume_shared",
+      "recomputed": {
+        "direction_percent": 50.59946595460614,
+        "within_1_percent": 66.673564753004,
+        "whole_candle_1_percent": 40.802403204272366
+      },
+      "passed": true
+    },
+    {
+      "variant": "volume_uncertainty",
+      "recomputed": {
+        "direction_percent": 50.51134846461949,
+        "within_1_percent": 66.63518024032042,
+        "whole_candle_1_percent": 40.73164218958611
+      },
+      "passed": true
+    },
+    {
+      "variant": "volume_pcgrad",
+      "recomputed": {
+        "direction_percent": 50.630173564753,
+        "within_1_percent": 66.68424566088117,
+        "whole_candle_1_percent": 40.77436582109479
+      },
+      "passed": true
+    },
+    {
+      "variant": "hybrid_decay",
+      "recomputed": {
+        "direction_percent": 50.96261682242991,
+        "within_1_percent": 66.80740987983978,
+        "whole_candle_1_percent": 41.03604806408544
+      },
+      "passed": true
+    },
+    {
+      "variant": "sector",
+      "recomputed": {
+        "direction_percent": 50.87049399198932,
+        "within_1_percent": 66.69359145527369,
+        "whole_candle_1_percent": 40.712950600801065
+      },
+      "passed": true
+    },
+    {
+      "variant": "primary_only",
+      "recomputed": {
+        "direction_percent": 51.054739652870495,
+        "within_1_percent": 66.71662216288384,
+        "whole_candle_1_percent": 40.699599465954606
+      },
+      "passed": true
+    },
+    {
+      "variant": "two_layer",
+      "recomputed": {
+        "direction_percent": 50.78104138851802,
+        "within_1_percent": 66.79839786381842,
+        "whole_candle_1_percent": 40.98531375166889
+      },
+      "passed": true
+    },
+    {
+      "variant": "direction_aux",
+      "recomputed": {
+        "direction_percent": 50.7690253671562,
+        "within_1_percent": 66.70794392523365,
+        "whole_candle_1_percent": 40.78504672897196
+      },
+      "passed": true
+    },
+    {
+      "variant": "finbert",
+      "recomputed": {
+        "direction_percent": 50.981308411214954,
+        "within_1_percent": 66.7690253671562,
+        "whole_candle_1_percent": 40.97196261682243
+      },
+      "passed": true
+    },
+    {
+      "variant": "dual_stream",
+      "recomputed": {
+        "direction_percent": 50.94926568758345,
+        "within_1_percent": 66.69158878504673,
+        "whole_candle_1_percent": 40.81975967957276
+      },
+      "passed": true
+    },
+    {
+      "variant": "combined",
+      "recomputed": {
+        "direction_percent": 50.70761014686248,
+        "within_1_percent": 66.55340453938585,
+        "whole_candle_1_percent": 40.28838451268358
+      },
+      "passed": true
+    }
+  ],
+  "all_17_price_errors_present_in_rendered_table": true
+}

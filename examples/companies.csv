@@ -1,0 +1,4 @@
+company_id,name,aliases,valid_from,valid_to
+DEMO_ACME,Acme Components,Acme Components Inc.|Acme,2020-01-01,
+DEMO_BOREAL,Boreal Motors,Boreal Motors Inc.|Boreal,2020-01-01,
+DEMO_ALDER,Alder Technologies,Alder Technologies Inc.|Alder,2020-01-01,

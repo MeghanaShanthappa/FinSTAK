@@ -1,0 +1,20 @@
+{
+  "checked_utc": "2026-11-27T03:22:27.845508+00:00",
+  "unit_tests": {
+    "run": 183,
+    "passed": 180,
+    "skipped": 3,
+    "failures": 0
+  },
+  "portable_launcher_check_only": "passed",
+  "release_archive_sha256": "5779df4319d688e7084a8adfac94c2d26835c2d4d60ce552d882f4fc500dac74",
+  "credential_pattern_review": {
+    "repository_text_files_scanned": 390,
+    "archive_members_reviewed": 1625,
+    "archive_text_files_scanned": 1286,
+    "unresolved_matches": 0,
+    "reviewed_false_positive": "One lowercase hyphenated public Nasdaq article URL slug matched an overly broad legacy API-key pattern; no digits, uppercase letters or project-key prefix. Repeated in original/expanded event source URL fields.",
+    "false_positive_match_sha256": "fbc4e7861741587cafa94b8e7c2325ff3e6cb97872a4b0aa0e84c6cfa614d180"
+  },
+  "release_scope": "Retained original expanded-study archive; fresh run summaries and later reports are stored separately in Git."
+}

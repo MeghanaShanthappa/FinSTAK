@@ -1,0 +1,8 @@
+{
+  "records": 27030,
+  "missing_source_hash_url_or_evidence": 0,
+  "news_earlier_than_assumed_two_day_delay": 0,
+  "export_matches_packed_event_hash": true,
+  "passed": true,
+  "scope": "Export metadata integrity and declared delay only; not a rerun of the original raw-source joins or human review."
+}

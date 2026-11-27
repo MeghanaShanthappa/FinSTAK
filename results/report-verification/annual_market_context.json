@@ -1,0 +1,17 @@
+{
+  "2021": {
+    "stock_dates": 25100,
+    "mean_absolute_close_move_percent": 1.1844253330916463,
+    "mean_intraday_range_percent": 2.088953106942518
+  },
+  "2022": {
+    "stock_dates": 25000,
+    "mean_absolute_close_move_percent": 1.5310883363357166,
+    "mean_intraday_range_percent": 2.6282329882672184
+  },
+  "2023": {
+    "stock_dates": 24800,
+    "mean_absolute_close_move_percent": 1.1302551170675725,
+    "mean_intraday_range_percent": 1.983255182815975
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "checked_utc": "2026-11-22T22:40:21.533166+00:00",
+  "passed": true,
+  "checks": {
+    "fourteen_pages_without_overflow_sections": true,
+    "no_horizontal_text_overflow": true,
+    "no_near_empty_pages": true,
+    "no_missing_glyph_replacement": true,
+    "fourteen_html_sections": true,
+    "six_embedded_html_figures": true,
+    "all_svg_payloads_valid": true,
+    "profile_category_counts_reconcile": true,
+    "profile_source_counts_reconcile": true,
+    "recomputed_category_counts_match_profile": true,
+    "all_153_fits_present": true,
+    "all_17_configs_present": true,
+    "all_configs_have_74900_test_targets": true,
+    "fresh_independent_verification_passed": true,
+    "all_saved_model_tensors_reproduced": true,
+    "direction_and_tolerance_verified_from_predictions": true,
+    "event_export_integrity_and_declared_delay_verified": true,
+    "price_predictions_reproduced_within_roundoff": true,
+    "key_report_numbers_present": true,
+    "confidence_limitation_present": true,
+    "all_validation_locks_complete": true
+  },
+  "pdf_pages": 14,
+  "pdf_word_count": 4288,
+  "overflows": []
+}

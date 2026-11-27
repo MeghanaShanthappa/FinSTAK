@@ -1,0 +1,7 @@
+{
+  "state": "training_complete",
+  "GPU": "NVIDIA A100 80GB PCIe",
+  "torch": "2.11.0+cu130",
+  "source_study": "/var/tmp/work-mshanthappa/finstak_recovered/finstak-100x10-v1",
+  "purpose": "Reproduction on the existing 2021\u20132023 test folds; not a new holdout."
+}

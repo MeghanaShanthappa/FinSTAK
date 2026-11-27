@@ -1,0 +1,39 @@
+{
+  "stocks_with_events": 100,
+  "price_records_including_warmup": 257900,
+  "events": 27030,
+  "event_records_per_stock": {
+    "minimum": 57,
+    "median": 217.0,
+    "maximum": 858
+  },
+  "by_known_year": {
+    "2014": 1605,
+    "2015": 1902,
+    "2016": 2227,
+    "2017": 2220,
+    "2018": 2757,
+    "2019": 2724,
+    "2020": 2815,
+    "2021": 2187,
+    "2022": 3854,
+    "2023": 4739
+  },
+  "by_category": {
+    "earnings": 12072,
+    "financing": 1143,
+    "acquisition": 5174,
+    "guidance_change": 2419,
+    "operational_disruption": 1900,
+    "dividend": 2770,
+    "litigation": 1552
+  },
+  "by_source_type": {
+    "fnspid_quoted_assertion": 24187,
+    "SEC_declared_form_item_metadata": 2816,
+    "sec_structured_quarterly_disclosure": 27
+  },
+  "human_reviewed": 0,
+  "structured_semantic_support_flag": 2843,
+  "verification_scope": "Automated source evidence checks; semantic flag on structured SEC records does not imply human review."
+}

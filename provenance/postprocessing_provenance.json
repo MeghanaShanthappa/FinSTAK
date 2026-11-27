@@ -1,0 +1,9 @@
+{
+  "training_sources_or_predictions_modified": false,
+  "report_fix": "Rename the per-model metrics dictionary variable to avoid shadowing the native-baseline metric function.",
+  "postprocessing_scripts": {
+    "verify_scale_study.py": "fd3694df45bcda2ad2101736e33e4cb8577796f43b71ecc6c0fc016900b4555b",
+    "report_scale_study.py": "d35d2e41092bf2effef2563c2e391599b31779e0bd987dcb048028fb674245d9",
+    "analyze_scale_outcomes.py": "95a8a962f79df68f024c007bfb1f34901c59be98323b8d12e702c69669af73a1"
+  }
+}

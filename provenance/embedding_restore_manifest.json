@@ -1,0 +1,14 @@
+[
+  {
+    "destination": "expanded/embeddings/vectors.f32",
+    "packed": "packed/event_arrays.npz",
+    "sha256": "29c3c8e92b325f7debf5a5ccaeddbdb47bbf5478a54e8419acc5b9e6252e7b01",
+    "bytes": 83036160
+  },
+  {
+    "destination": "expanded/finbert_embeddings/vectors.f32",
+    "packed": "packed/event_arrays_finbert.npz",
+    "sha256": "92d861e63e223307ee3a8d820a859c661f26f16a4259283558f61e7beeb1f4b0",
+    "bytes": 83036160
+  }
+]

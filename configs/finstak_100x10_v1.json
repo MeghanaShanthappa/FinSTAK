@@ -1,0 +1,1085 @@
+{
+  "experiment_id": "finstak_100x10_v1",
+  "dataset_revision": "bf9189c41527198897d1af3e17b1a0095279fc45",
+  "calendar_start": "2013-10-01",
+  "sample_start": "2014-01-01",
+  "sample_end": "2023-12-27",
+  "price_end": "2023-12-28",
+  "train_end": "2019-12-31",
+  "validation_end": "2020-12-31",
+  "lookback_sessions": 30,
+  "horizon_sessions": 1,
+  "max_epochs": 25,
+  "patience": 5,
+  "batch_size": 1024,
+  "seeds": [
+    7,
+    19,
+    41
+  ],
+  "modes": [
+    "no_events",
+    "no_decay",
+    "events"
+  ],
+  "minimum_events": 25000,
+  "maximum_events": 50000,
+  "event_target_is_gate": true,
+  "sector_quotas": {
+    "Technology": 12,
+    "Health care": 12,
+    "Financials": 12,
+    "Industrials": 12,
+    "Consumer discretionary": 10,
+    "Consumer staples": 10,
+    "Energy": 8,
+    "Utilities": 8,
+    "Materials": 8,
+    "Communication services": 4,
+    "Real estate": 4
+  },
+  "candidate_companies": [
+    {
+      "company_id": "AAPL",
+      "name": "Apple",
+      "aliases": [
+        "Apple"
+      ],
+      "sector": "Technology"
+    },
+    {
+      "company_id": "MSFT",
+      "name": "Microsoft",
+      "aliases": [
+        "Microsoft"
+      ],
+      "sector": "Technology"
+    },
+    {
+      "company_id": "INTC",
+      "name": "Intel",
+      "aliases": [
+        "Intel"
+      ],
+      "sector": "Technology"
+    },
+    {
+      "company_id": "CSCO",
+      "name": "Cisco",
+      "aliases": [
+        "Cisco"
+      ],
+      "sector": "Technology"
+    },
+    {
+      "company_id": "IBM",
+      "name": "IBM",
+      "aliases": [
+        "IBM"
+      ],
+      "sector": "Technology"
+    },
+    {
+      "company_id": "ORCL",
+      "name": "Oracle",
+      "aliases": [
+        "Oracle"
+      ],
+      "sector": "Technology"
+    },
+    {
+      "company_id": "QCOM",
+      "name": "Qualcomm",
+      "aliases": [
+        "Qualcomm"
+      ],
+      "sector": "Technology"
+    },
+    {
+      "company_id": "TXN",
+      "name": "Texas Instruments",
+      "aliases": [
+        "Texas Instruments"
+      ],
+      "sector": "Technology"
+    },
+    {
+      "company_id": "ADBE",
+      "name": "Adobe",
+      "aliases": [
+        "Adobe"
+      ],
+      "sector": "Technology"
+    },
+    {
+      "company_id": "AMAT",
+      "name": "Applied Materials",
+      "aliases": [
+        "Applied Materials"
+      ],
+      "sector": "Technology"
+    },
+    {
+      "company_id": "ADI",
+      "name": "Analog Devices",
+      "aliases": [
+        "Analog Devices"
+      ],
+      "sector": "Technology"
+    },
+    {
+      "company_id": "ADP",
+      "name": "Automatic Data Processing",
+      "aliases": [
+        "Automatic Data Processing"
+      ],
+      "sector": "Technology"
+    },
+    {
+      "company_id": "KLAC",
+      "name": "KLA",
+      "aliases": [
+        "KLA"
+      ],
+      "sector": "Technology"
+    },
+    {
+      "company_id": "LRCX",
+      "name": "Lam Research",
+      "aliases": [
+        "Lam Research"
+      ],
+      "sector": "Technology"
+    },
+    {
+      "company_id": "HPQ",
+      "name": "HP",
+      "aliases": [
+        "HP",
+        "Hewlett-Packard"
+      ],
+      "sector": "Technology"
+    },
+    {
+      "company_id": "JNJ",
+      "name": "Johnson & Johnson",
+      "aliases": [
+        "Johnson & Johnson"
+      ],
+      "sector": "Health care"
+    },
+    {
+      "company_id": "PFE",
+      "name": "Pfizer",
+      "aliases": [
+        "Pfizer"
+      ],
+      "sector": "Health care"
+    },
+    {
+      "company_id": "MRK",
+      "name": "Merck",
+      "aliases": [
+        "Merck"
+      ],
+      "sector": "Health care"
+    },
+    {
+      "company_id": "AMGN",
+      "name": "Amgen",
+      "aliases": [
+        "Amgen"
+      ],
+      "sector": "Health care"
+    },
+    {
+      "company_id": "ABT",
+      "name": "Abbott",
+      "aliases": [
+        "Abbott"
+      ],
+      "sector": "Health care"
+    },
+    {
+      "company_id": "BMY",
+      "name": "Bristol-Myers Squibb",
+      "aliases": [
+        "Bristol Myers",
+        "Bristol-Myers",
+        "Bristol-Myers Squibb"
+      ],
+      "sector": "Health care"
+    },
+    {
+      "company_id": "LLY",
+      "name": "Eli Lilly",
+      "aliases": [
+        "Eli Lilly"
+      ],
+      "sector": "Health care"
+    },
+    {
+      "company_id": "UNH",
+      "name": "UnitedHealth",
+      "aliases": [
+        "UnitedHealth"
+      ],
+      "sector": "Health care"
+    },
+    {
+      "company_id": "GILD",
+      "name": "Gilead",
+      "aliases": [
+        "Gilead"
+      ],
+      "sector": "Health care"
+    },
+    {
+      "company_id": "MDT",
+      "name": "Medtronic",
+      "aliases": [
+        "Medtronic"
+      ],
+      "sector": "Health care"
+    },
+    {
+      "company_id": "DHR",
+      "name": "Danaher",
+      "aliases": [
+        "Danaher"
+      ],
+      "sector": "Health care"
+    },
+    {
+      "company_id": "TMO",
+      "name": "Thermo Fisher",
+      "aliases": [
+        "Thermo Fisher"
+      ],
+      "sector": "Health care"
+    },
+    {
+      "company_id": "CVS",
+      "name": "CVS",
+      "aliases": [
+        "CVS"
+      ],
+      "sector": "Health care"
+    },
+    {
+      "company_id": "CI",
+      "name": "Cigna",
+      "aliases": [
+        "Cigna"
+      ],
+      "sector": "Health care"
+    },
+    {
+      "company_id": "BDX",
+      "name": "Becton Dickinson",
+      "aliases": [
+        "Becton Dickinson"
+      ],
+      "sector": "Health care"
+    },
+    {
+      "company_id": "JPM",
+      "name": "JPMorgan Chase",
+      "aliases": [
+        "J.P. Morgan",
+        "JPMorgan",
+        "JPMorgan Chase"
+      ],
+      "sector": "Financials"
+    },
+    {
+      "company_id": "BAC",
+      "name": "Bank of America",
+      "aliases": [
+        "Bank of America"
+      ],
+      "sector": "Financials"
+    },
+    {
+      "company_id": "WFC",
+      "name": "Wells Fargo",
+      "aliases": [
+        "Wells Fargo"
+      ],
+      "sector": "Financials"
+    },
+    {
+      "company_id": "GS",
+      "name": "Goldman Sachs",
+      "aliases": [
+        "Goldman Sachs"
+      ],
+      "sector": "Financials"
+    },
+    {
+      "company_id": "C",
+      "name": "Citigroup",
+      "aliases": [
+        "Citigroup"
+      ],
+      "sector": "Financials"
+    },
+    {
+      "company_id": "MS",
+      "name": "Morgan Stanley",
+      "aliases": [
+        "Morgan Stanley"
+      ],
+      "sector": "Financials"
+    },
+    {
+      "company_id": "AXP",
+      "name": "American Express",
+      "aliases": [
+        "American Express"
+      ],
+      "sector": "Financials"
+    },
+    {
+      "company_id": "USB",
+      "name": "U.S. Bancorp",
+      "aliases": [
+        "U.S. Bancorp",
+        "US Bancorp"
+      ],
+      "sector": "Financials"
+    },
+    {
+      "company_id": "PNC",
+      "name": "PNC",
+      "aliases": [
+        "PNC"
+      ],
+      "sector": "Financials"
+    },
+    {
+      "company_id": "BK",
+      "name": "Bank of New York Mellon",
+      "aliases": [
+        "Bank of New York Mellon"
+      ],
+      "sector": "Financials"
+    },
+    {
+      "company_id": "SCHW",
+      "name": "Charles Schwab",
+      "aliases": [
+        "Charles Schwab"
+      ],
+      "sector": "Financials"
+    },
+    {
+      "company_id": "AFL",
+      "name": "Aflac",
+      "aliases": [
+        "Aflac"
+      ],
+      "sector": "Financials"
+    },
+    {
+      "company_id": "MET",
+      "name": "MetLife",
+      "aliases": [
+        "MetLife"
+      ],
+      "sector": "Financials"
+    },
+    {
+      "company_id": "PRU",
+      "name": "Prudential",
+      "aliases": [
+        "Prudential"
+      ],
+      "sector": "Financials"
+    },
+    {
+      "company_id": "CME",
+      "name": "CME Group",
+      "aliases": [
+        "CME Group"
+      ],
+      "sector": "Financials"
+    },
+    {
+      "company_id": "CAT",
+      "name": "Caterpillar",
+      "aliases": [
+        "Caterpillar"
+      ],
+      "sector": "Industrials"
+    },
+    {
+      "company_id": "DE",
+      "name": "Deere",
+      "aliases": [
+        "Deere"
+      ],
+      "sector": "Industrials"
+    },
+    {
+      "company_id": "HON",
+      "name": "Honeywell",
+      "aliases": [
+        "Honeywell"
+      ],
+      "sector": "Industrials"
+    },
+    {
+      "company_id": "MMM",
+      "name": "3M",
+      "aliases": [
+        "3M"
+      ],
+      "sector": "Industrials"
+    },
+    {
+      "company_id": "UPS",
+      "name": "UPS",
+      "aliases": [
+        "UPS"
+      ],
+      "sector": "Industrials"
+    },
+    {
+      "company_id": "FDX",
+      "name": "FedEx",
+      "aliases": [
+        "FedEx"
+      ],
+      "sector": "Industrials"
+    },
+    {
+      "company_id": "LMT",
+      "name": "Lockheed Martin",
+      "aliases": [
+        "Lockheed Martin"
+      ],
+      "sector": "Industrials"
+    },
+    {
+      "company_id": "NOC",
+      "name": "Northrop Grumman",
+      "aliases": [
+        "Northrop Grumman"
+      ],
+      "sector": "Industrials"
+    },
+    {
+      "company_id": "GD",
+      "name": "General Dynamics",
+      "aliases": [
+        "General Dynamics"
+      ],
+      "sector": "Industrials"
+    },
+    {
+      "company_id": "BA",
+      "name": "Boeing",
+      "aliases": [
+        "Boeing"
+      ],
+      "sector": "Industrials"
+    },
+    {
+      "company_id": "UNP",
+      "name": "Union Pacific",
+      "aliases": [
+        "Union Pacific"
+      ],
+      "sector": "Industrials"
+    },
+    {
+      "company_id": "CSX",
+      "name": "CSX",
+      "aliases": [
+        "CSX"
+      ],
+      "sector": "Industrials"
+    },
+    {
+      "company_id": "NSC",
+      "name": "Norfolk Southern",
+      "aliases": [
+        "Norfolk Southern"
+      ],
+      "sector": "Industrials"
+    },
+    {
+      "company_id": "EMR",
+      "name": "Emerson",
+      "aliases": [
+        "Emerson"
+      ],
+      "sector": "Industrials"
+    },
+    {
+      "company_id": "ETN",
+      "name": "Eaton",
+      "aliases": [
+        "Eaton"
+      ],
+      "sector": "Industrials"
+    },
+    {
+      "company_id": "AMZN",
+      "name": "Amazon",
+      "aliases": [
+        "Amazon"
+      ],
+      "sector": "Consumer discretionary"
+    },
+    {
+      "company_id": "HD",
+      "name": "Home Depot",
+      "aliases": [
+        "Home Depot"
+      ],
+      "sector": "Consumer discretionary"
+    },
+    {
+      "company_id": "LOW",
+      "name": "Lowe's",
+      "aliases": [
+        "Lowe's",
+        "Lowes"
+      ],
+      "sector": "Consumer discretionary"
+    },
+    {
+      "company_id": "MCD",
+      "name": "McDonald's",
+      "aliases": [
+        "McDonald's",
+        "McDonalds"
+      ],
+      "sector": "Consumer discretionary"
+    },
+    {
+      "company_id": "NKE",
+      "name": "Nike",
+      "aliases": [
+        "Nike"
+      ],
+      "sector": "Consumer discretionary"
+    },
+    {
+      "company_id": "SBUX",
+      "name": "Starbucks",
+      "aliases": [
+        "Starbucks"
+      ],
+      "sector": "Consumer discretionary"
+    },
+    {
+      "company_id": "TJX",
+      "name": "TJX",
+      "aliases": [
+        "TJX"
+      ],
+      "sector": "Consumer discretionary"
+    },
+    {
+      "company_id": "TGT",
+      "name": "Target",
+      "aliases": [
+        "Target"
+      ],
+      "sector": "Consumer discretionary"
+    },
+    {
+      "company_id": "F",
+      "name": "Ford",
+      "aliases": [
+        "Ford"
+      ],
+      "sector": "Consumer discretionary"
+    },
+    {
+      "company_id": "GM",
+      "name": "General Motors",
+      "aliases": [
+        "General Motors"
+      ],
+      "sector": "Consumer discretionary"
+    },
+    {
+      "company_id": "YUM",
+      "name": "Yum Brands",
+      "aliases": [
+        "Yum Brands"
+      ],
+      "sector": "Consumer discretionary"
+    },
+    {
+      "company_id": "ROST",
+      "name": "Ross Stores",
+      "aliases": [
+        "Ross Stores"
+      ],
+      "sector": "Consumer discretionary"
+    },
+    {
+      "company_id": "BBY",
+      "name": "Best Buy",
+      "aliases": [
+        "Best Buy"
+      ],
+      "sector": "Consumer discretionary"
+    },
+    {
+      "company_id": "KO",
+      "name": "Coca-Cola",
+      "aliases": [
+        "Coca Cola",
+        "Coca-Cola"
+      ],
+      "sector": "Consumer staples"
+    },
+    {
+      "company_id": "PEP",
+      "name": "PepsiCo",
+      "aliases": [
+        "PepsiCo"
+      ],
+      "sector": "Consumer staples"
+    },
+    {
+      "company_id": "WMT",
+      "name": "Walmart",
+      "aliases": [
+        "Wal-Mart",
+        "Walmart"
+      ],
+      "sector": "Consumer staples"
+    },
+    {
+      "company_id": "PG",
+      "name": "Procter & Gamble",
+      "aliases": [
+        "P&G",
+        "Procter",
+        "Procter & Gamble"
+      ],
+      "sector": "Consumer staples"
+    },
+    {
+      "company_id": "CL",
+      "name": "Colgate-Palmolive",
+      "aliases": [
+        "Colgate-Palmolive"
+      ],
+      "sector": "Consumer staples"
+    },
+    {
+      "company_id": "KMB",
+      "name": "Kimberly-Clark",
+      "aliases": [
+        "Kimberly-Clark"
+      ],
+      "sector": "Consumer staples"
+    },
+    {
+      "company_id": "GIS",
+      "name": "General Mills",
+      "aliases": [
+        "General Mills"
+      ],
+      "sector": "Consumer staples"
+    },
+    {
+      "company_id": "K",
+      "name": "Kellogg",
+      "aliases": [
+        "Kellogg"
+      ],
+      "sector": "Consumer staples"
+    },
+    {
+      "company_id": "KR",
+      "name": "Kroger",
+      "aliases": [
+        "Kroger"
+      ],
+      "sector": "Consumer staples"
+    },
+    {
+      "company_id": "SYY",
+      "name": "Sysco",
+      "aliases": [
+        "Sysco"
+      ],
+      "sector": "Consumer staples"
+    },
+    {
+      "company_id": "HSY",
+      "name": "Hershey",
+      "aliases": [
+        "Hershey"
+      ],
+      "sector": "Consumer staples"
+    },
+    {
+      "company_id": "CAG",
+      "name": "Conagra",
+      "aliases": [
+        "Conagra"
+      ],
+      "sector": "Consumer staples"
+    },
+    {
+      "company_id": "CPB",
+      "name": "Campbell Soup",
+      "aliases": [
+        "Campbell Soup"
+      ],
+      "sector": "Consumer staples"
+    },
+    {
+      "company_id": "XOM",
+      "name": "Exxon Mobil",
+      "aliases": [
+        "Exxon",
+        "Exxon Mobil",
+        "ExxonMobil"
+      ],
+      "sector": "Energy"
+    },
+    {
+      "company_id": "CVX",
+      "name": "Chevron",
+      "aliases": [
+        "Chevron"
+      ],
+      "sector": "Energy"
+    },
+    {
+      "company_id": "COP",
+      "name": "ConocoPhillips",
+      "aliases": [
+        "ConocoPhillips"
+      ],
+      "sector": "Energy"
+    },
+    {
+      "company_id": "OXY",
+      "name": "Occidental",
+      "aliases": [
+        "Occidental"
+      ],
+      "sector": "Energy"
+    },
+    {
+      "company_id": "SLB",
+      "name": "Schlumberger",
+      "aliases": [
+        "Schlumberger"
+      ],
+      "sector": "Energy"
+    },
+    {
+      "company_id": "HAL",
+      "name": "Halliburton",
+      "aliases": [
+        "Halliburton"
+      ],
+      "sector": "Energy"
+    },
+    {
+      "company_id": "EOG",
+      "name": "EOG Resources",
+      "aliases": [
+        "EOG Resources"
+      ],
+      "sector": "Energy"
+    },
+    {
+      "company_id": "VLO",
+      "name": "Valero",
+      "aliases": [
+        "Valero"
+      ],
+      "sector": "Energy"
+    },
+    {
+      "company_id": "MPC",
+      "name": "Marathon Petroleum",
+      "aliases": [
+        "Marathon Petroleum"
+      ],
+      "sector": "Energy"
+    },
+    {
+      "company_id": "PSX",
+      "name": "Phillips 66",
+      "aliases": [
+        "Phillips 66"
+      ],
+      "sector": "Energy"
+    },
+    {
+      "company_id": "NEE",
+      "name": "NextEra",
+      "aliases": [
+        "NextEra"
+      ],
+      "sector": "Utilities"
+    },
+    {
+      "company_id": "DUK",
+      "name": "Duke Energy",
+      "aliases": [
+        "Duke Energy"
+      ],
+      "sector": "Utilities"
+    },
+    {
+      "company_id": "SO",
+      "name": "Southern Company",
+      "aliases": [
+        "Southern Company"
+      ],
+      "sector": "Utilities"
+    },
+    {
+      "company_id": "D",
+      "name": "Dominion",
+      "aliases": [
+        "Dominion"
+      ],
+      "sector": "Utilities"
+    },
+    {
+      "company_id": "AEP",
+      "name": "American Electric Power",
+      "aliases": [
+        "American Electric Power"
+      ],
+      "sector": "Utilities"
+    },
+    {
+      "company_id": "EXC",
+      "name": "Exelon",
+      "aliases": [
+        "Exelon"
+      ],
+      "sector": "Utilities"
+    },
+    {
+      "company_id": "ED",
+      "name": "Consolidated Edison",
+      "aliases": [
+        "Consolidated Edison"
+      ],
+      "sector": "Utilities"
+    },
+    {
+      "company_id": "XEL",
+      "name": "Xcel Energy",
+      "aliases": [
+        "Xcel Energy"
+      ],
+      "sector": "Utilities"
+    },
+    {
+      "company_id": "SRE",
+      "name": "Sempra",
+      "aliases": [
+        "Sempra"
+      ],
+      "sector": "Utilities"
+    },
+    {
+      "company_id": "PEG",
+      "name": "Public Service Enterprise",
+      "aliases": [
+        "Public Service Enterprise"
+      ],
+      "sector": "Utilities"
+    },
+    {
+      "company_id": "APD",
+      "name": "Air Products",
+      "aliases": [
+        "Air Products"
+      ],
+      "sector": "Materials"
+    },
+    {
+      "company_id": "ECL",
+      "name": "Ecolab",
+      "aliases": [
+        "Ecolab"
+      ],
+      "sector": "Materials"
+    },
+    {
+      "company_id": "SHW",
+      "name": "Sherwin-Williams",
+      "aliases": [
+        "Sherwin-Williams"
+      ],
+      "sector": "Materials"
+    },
+    {
+      "company_id": "NEM",
+      "name": "Newmont",
+      "aliases": [
+        "Newmont"
+      ],
+      "sector": "Materials"
+    },
+    {
+      "company_id": "FCX",
+      "name": "Freeport-McMoRan",
+      "aliases": [
+        "Freeport-McMoRan"
+      ],
+      "sector": "Materials"
+    },
+    {
+      "company_id": "NUE",
+      "name": "Nucor",
+      "aliases": [
+        "Nucor"
+      ],
+      "sector": "Materials"
+    },
+    {
+      "company_id": "IP",
+      "name": "International Paper",
+      "aliases": [
+        "International Paper"
+      ],
+      "sector": "Materials"
+    },
+    {
+      "company_id": "PPG",
+      "name": "PPG",
+      "aliases": [
+        "PPG"
+      ],
+      "sector": "Materials"
+    },
+    {
+      "company_id": "MOS",
+      "name": "Mosaic",
+      "aliases": [
+        "Mosaic"
+      ],
+      "sector": "Materials"
+    },
+    {
+      "company_id": "VMC",
+      "name": "Vulcan Materials",
+      "aliases": [
+        "Vulcan Materials"
+      ],
+      "sector": "Materials"
+    },
+    {
+      "company_id": "T",
+      "name": "AT&T",
+      "aliases": [
+        "AT&T"
+      ],
+      "sector": "Communication services"
+    },
+    {
+      "company_id": "VZ",
+      "name": "Verizon",
+      "aliases": [
+        "Verizon"
+      ],
+      "sector": "Communication services"
+    },
+    {
+      "company_id": "CMCSA",
+      "name": "Comcast",
+      "aliases": [
+        "Comcast"
+      ],
+      "sector": "Communication services"
+    },
+    {
+      "company_id": "DIS",
+      "name": "Disney",
+      "aliases": [
+        "Disney"
+      ],
+      "sector": "Communication services"
+    },
+    {
+      "company_id": "NFLX",
+      "name": "Netflix",
+      "aliases": [
+        "Netflix"
+      ],
+      "sector": "Communication services"
+    },
+    {
+      "company_id": "OMC",
+      "name": "Omnicom",
+      "aliases": [
+        "Omnicom"
+      ],
+      "sector": "Communication services"
+    },
+    {
+      "company_id": "SPG",
+      "name": "Simon Property",
+      "aliases": [
+        "Simon Property"
+      ],
+      "sector": "Real estate"
+    },
+    {
+      "company_id": "O",
+      "name": "Realty Income",
+      "aliases": [
+        "Realty Income"
+      ],
+      "sector": "Real estate"
+    },
+    {
+      "company_id": "PSA",
+      "name": "Public Storage",
+      "aliases": [
+        "Public Storage"
+      ],
+      "sector": "Real estate"
+    },
+    {
+      "company_id": "AMT",
+      "name": "American Tower",
+      "aliases": [
+        "American Tower"
+      ],
+      "sector": "Real estate"
+    },
+    {
+      "company_id": "EQR",
+      "name": "Equity Residential",
+      "aliases": [
+        "Equity Residential"
+      ],
+      "sector": "Real estate"
+    },
+    {
+      "company_id": "AVB",
+      "name": "AvalonBay",
+      "aliases": [
+        "AvalonBay"
+      ],
+      "sector": "Real estate"
+    }
+  ],
+  "universe_policy": "Prespecified sector quotas and candidate order, eligibility uses only pre-2014 observed prices. Manually curated universe remains selection-biased; not a historical index reconstruction.",
+  "news_availability": "source timestamp plus 2 calendar days; conservative assumption, not verified arrival",
+  "test_is_fresh_holdout": false,
+  "foundation_pretraining_overlap_unknown": true
+}

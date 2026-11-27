@@ -1,0 +1,22 @@
+{
+  "original_pipeline_failure": {
+    "error": "independent_verification failed with exit 1; see /tmp/finstak-100x10-v1/independent_verification.log",
+    "state": "failed",
+    "updated_at": "2026-11-10T05:04:38.256021+00:00"
+  },
+  "diagnostic": {
+    "1": 3.134831786110598e-06,
+    "2": 5.074776709109233e-06,
+    "16": 1.8561541192951836e-16,
+    "32": 6.2603503465027965e-06,
+    "original_predict_16": 1.8561541192951836e-16
+  },
+  "method": "Original evaluation batch size; unchanged 2e-6 logratio tolerance. Causality retains the independent two-date cutoff.",
+  "training_sources_modified": false,
+  "checkpoints_or_predictions_modified": false,
+  "tolerance_relaxed": false,
+  "checkpoints_verified": 153,
+  "model_fold_checks": 51,
+  "max_replay_logratio_difference": 3.2612801348363973e-16,
+  "max_future_perturbation_logratio_difference": 0.0
+}

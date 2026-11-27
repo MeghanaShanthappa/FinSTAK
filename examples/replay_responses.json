@@ -1,0 +1,81 @@
+{
+  "demo-shutdown": {
+    "events": [
+      {
+        "category": "operational_disruption",
+        "description": "A fire halted production at Acme Components' Dallas factory; the company expects a ten-calendar-day shutdown.",
+        "companies": [
+          {
+            "name": "Acme Components",
+            "role": "factory_operator",
+            "evidence": "Acme Components said a fire halted production at its Dallas factory."
+          }
+        ],
+        "occurrence_date": null,
+        "occurrence_date_evidence": null,
+        "claim_status": "reported",
+        "amounts": [],
+        "expected_duration": {
+          "value": 10,
+          "unit": "calendar_days",
+          "is_estimate": true,
+          "evidence": "The company expects the shutdown to last ten calendar days."
+        },
+        "evidence": [
+          "Acme Components said a fire halted production at its Dallas factory.",
+          "The company expects the shutdown to last ten calendar days."
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "subject": "Boreal Motors",
+        "relation": "customer_of",
+        "object": "Acme Components",
+        "evidence": "Boreal Motors purchases components from Acme Components."
+      }
+    ]
+  },
+  "demo-guidance": {
+    "events": [
+      {
+        "category": "guidance_change",
+        "description": "Alder Technologies lowered its full-year 2026 revenue guidance from USD 5.0 billion to USD 4.5 billion.",
+        "companies": [
+          {
+            "name": "Alder Technologies",
+            "role": "issuer",
+            "evidence": "On 2026-10-02, Alder Technologies lowered its full-year 2026 revenue guidance from USD 5.0 billion to USD 4.5 billion."
+          }
+        ],
+        "occurrence_date": "2026-10-02",
+        "occurrence_date_evidence": "On 2026-10-02, Alder Technologies lowered its full-year 2026 revenue guidance from USD 5.0 billion to USD 4.5 billion.",
+        "claim_status": "reported",
+        "amounts": [
+          {
+            "value": 5.0,
+            "unit": "billion",
+            "currency": "USD",
+            "metric": "prior_revenue_guidance",
+            "period": "full-year 2026",
+            "evidence": "On 2026-10-02, Alder Technologies lowered its full-year 2026 revenue guidance from USD 5.0 billion to USD 4.5 billion."
+          },
+          {
+            "value": 4.5,
+            "unit": "billion",
+            "currency": "USD",
+            "metric": "new_revenue_guidance",
+            "period": "full-year 2026",
+            "evidence": "On 2026-10-02, Alder Technologies lowered its full-year 2026 revenue guidance from USD 5.0 billion to USD 4.5 billion."
+          }
+        ],
+        "expected_duration": null,
+        "evidence": [
+          "On 2026-10-02, Alder Technologies lowered its full-year 2026 revenue guidance from USD 5.0 billion to USD 4.5 billion."
+        ]
+      }
+    ],
+    "relationships": []
+  },
+  "demo-no-event": {"events": [], "relationships": []}
+}

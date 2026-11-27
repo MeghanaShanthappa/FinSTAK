@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A beginner-friendly guide to the implemented FinSTAK neural network: inputs, embeddings, GRU memory, attention, stock correlations, candle decoding and training.">
+<title>Inside FinSTAK — A beginner’s guide</title>
+<style>
+:root{color-scheme:light dark;--bg:#f5f7fa;--paper:#fff;--ink:#173348;--muted:#526b7d;--line:#d8e3eb;--accent:#007d80;--soft:#e9f5f4;--amber:#94501b;--amber-bg:#fff4e5;--code:#edf2f6;--shadow:0 8px 30px #17334808}
+@media(prefers-color-scheme:dark){:root{--bg:#101b24;--paper:#172631;--ink:#e3edf3;--muted:#adc0cd;--line:#354b5b;--accent:#77d7d0;--soft:#203d40;--amber:#f3c18b;--amber-bg:#3b3023;--code:#243743;--shadow:none}}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.72 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--accent);text-underline-offset:3px}button,a,input{touch-action:manipulation}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:4px}.skip{position:absolute;left:16px;top:-80px;background:var(--paper);padding:10px;z-index:20}.skip:focus{top:10px}.layout{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:240px minmax(0,1fr);gap:34px;padding:34px 28px 70px}.sidebar{position:sticky;top:28px;align-self:start}.brand{font-size:22px;font-weight:750;letter-spacing:-.5px}.brand span{color:var(--accent)}.sidebar p{font-size:13px;color:var(--muted);margin:2px 0 22px}.sidebar nav{display:grid;gap:3px}.sidebar nav a{text-decoration:none;color:var(--muted);padding:7px 10px;border-radius:6px;font-size:14px}.sidebar nav a:hover{color:var(--accent);background:var(--soft)}main{min-width:0}.hero{padding:28px 0 35px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:1.8px;color:var(--accent);font-weight:700}.hero h1{font-size:clamp(32px,5vw,52px);line-height:1.1;letter-spacing:-1.8px;margin:14px 0 20px;max-width:780px}.hero .lead{font-size:19px;line-height:1.65;max-width:780px}.meta{font-size:13px;color:var(--muted)}section{background:var(--paper);padding:32px 36px;margin-bottom:24px;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);scroll-margin-top:24px}h2{font-size:25px;line-height:1.3;letter-spacing:-.5px;margin:0 0 18px}h2 .number{display:block;color:var(--accent);font-size:12px;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px}h3{font-size:18px;margin:25px 0 10px}p{margin:12px 0}ul,ol{padding-left:24px}li{padding-left:3px;margin:7px 0}.note,.warning{padding:17px 20px;border-left:4px solid var(--accent);background:var(--soft);margin:20px 0;border-radius:0 6px 6px 0}.warning{background:var(--amber-bg);border-color:var(--amber)}.small,figcaption{font-size:13px;color:var(--muted)}strong{font-weight:700}.table-wrap{max-width:100%;overflow-x:auto;margin:20px 0}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid var(--line);overflow-wrap:anywhere}th{font-weight:700;background:var(--code)}td:first-child{font-weight:600}code{background:var(--code);border-radius:4px;padding:2px 5px;font-size:.9em;overflow-wrap:anywhere}.formula{background:var(--code);padding:18px;border-radius:6px;overflow-wrap:anywhere;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;line-height:1.8;margin:16px 0}.split{display:grid;grid-template-columns:1fr 1fr;gap:20px}.branch{border-top:3px solid var(--accent);padding-top:14px}.branch h3{margin:0 0 14px}.flow{list-style:none;padding:0;margin:12px 0}.flow li{margin:0;padding:12px 14px;text-align:center;background:var(--code);border-radius:6px;position:relative}.flow li+li{margin-top:27px}.flow li+li:before{content:"↓";position:absolute;left:calc(50% - 7px);top:-29px;color:var(--accent);font-size:20px}.flow li span{display:block;font-size:13px;color:var(--muted)}.merge{margin:25px 0 0;padding:18px;border-top:1px solid var(--line);text-align:center}.merge b{color:var(--accent)}.dimension{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;padding:18px;background:var(--soft);margin:20px 0;border-radius:8px}.dimension strong{font:600 22px/1.3 ui-monospace,monospace}.memory{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 0}.memory .day{padding:10px 14px;border:1px solid var(--line);border-radius:6px}.memory .arrow{color:var(--accent)}.quote{font-size:20px;color:var(--accent);border-left:3px solid var(--accent);padding-left:20px;margin:22px 0}.step-list{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;padding:0;margin:20px 0}.step-list li{padding:12px 8px;margin:0;border-bottom:3px solid var(--line);text-align:center;font-size:13px;transition:background .2s,border-color .2s}.step-list li.current{border-color:var(--accent);background:var(--soft)}.stage{padding:18px 0;min-height:145px}.stage h3{margin-top:0}.stage-shape{font:600 18px/1.6 ui-monospace,monospace;color:var(--accent);overflow-wrap:anywhere}.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}.controls button{font:inherit;font-size:14px;padding:10px 17px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:6px;cursor:pointer;min-height:44px}.controls button.primary{background:var(--accent);color:var(--paper);border-color:var(--accent)}.controls button:disabled{opacity:.45;cursor:default}.step-count{font-size:13px;color:var(--muted);margin-right:auto}.pulse-path{display:flex;align-items:center;justify-content:center;gap:10px;margin:12px 0 0}.pulse-path span{height:7px;width:28px;border-radius:6px;background:var(--line)}.pulse-path span.on{background:var(--accent)}details{border-top:1px solid var(--line);padding:14px 0;margin-top:16px}summary{cursor:pointer;font-weight:600}details p{font-size:14px}.terms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px}.terms div{padding:12px 0;border-bottom:1px solid var(--line)}.terms dt{font-weight:700}.terms dd{margin:6px 0;color:var(--muted);font-size:14px}footer{padding:12px 6px;color:var(--muted);font-size:13px}.mobile-nav{display:none}.no-js .stepper{display:none}
+@media(max-width:1000px){.layout{grid-template-columns:190px minmax(0,1fr);gap:20px;padding:24px 18px}.sidebar nav a{font-size:13px}section{padding:28px 24px}}
+@media(max-width:760px){.layout{display:block;padding:15px 14px 40px}.sidebar{position:static}.sidebar nav,.sidebar>p{display:none}.brand{margin-bottom:10px}.mobile-nav{display:block;margin:10px 0 20px}.mobile-nav nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.mobile-nav a{padding:6px 9px;background:var(--code);border-radius:4px;font-size:13px}.hero{padding:18px 0 24px}.hero h1{letter-spacing:-1px}.hero .lead{font-size:17px}section{padding:25px 19px;border-radius:9px}h2{font-size:22px}.split{grid-template-columns:1fr}.terms{grid-template-columns:1fr}.step-list{gap:3px}.step-list li{font-size:11px;padding:9px 3px}.stage{min-height:190px}th,td{padding:9px}.dimension{gap:9px}.dimension strong{font-size:18px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.step-list li{transition:none}}
+@media print{body{background:white;color:#173348;font-size:10pt}.layout{display:block;padding:0}.sidebar,.mobile-nav,.controls,.skip,.pulse-path{display:none}.hero{padding:0 0 18px}.hero h1{font-size:30pt}section{box-shadow:none;border:0;border-top:1px solid #ccc;border-radius:0;padding:20px 0;break-inside:auto}h2,h3{break-after:avoid}table,tr,.note,.warning,.split{break-inside:avoid}a{color:inherit}.stage{min-height:0}details> *{display:block}summary{list-style:none}footer{font-size:9pt}th,td{padding:7px}.table-wrap{overflow:visible}}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to the guide</a>
+<div class="layout">
+<aside class="sidebar" aria-label="Guide navigation">
+  <div class="brand">Fin<span>STAK</span></div><p>Understand the network, one step at a time.</p>
+  <nav aria-label="Contents">
+    <a href="#task">01 · What are we predicting?</a><a href="#overview">02 · The complete architecture</a><a href="#market">03 · Price inputs and embeddings</a><a href="#memory">04 · GRU sequence memory</a><a href="#text">05 · How text becomes numbers</a><a href="#attention">06 · Attention and relevance</a><a href="#relationships">07 · What is correlated?</a><a href="#decoder">08 · Predicting a valid candle</a><a href="#training">09 · A training step</a><a href="#validation">10 · Validation and stopping</a><a href="#variants">11 · Experimental techniques</a><a href="#glossary">12 · Vocabulary and sources</a>
+  </nav>
+</aside>
+<main id="main">
+<header class="hero">
+  <div class="eyebrow">A beginner’s guide to the implemented model</div>
+  <h1>Inside FinSTAK:<br>from market history to a prediction.</h1>
+  <p class="lead">FinSTAK looks at recent prices and available company events, predicts the next trading day’s prices, and learns by comparing its predictions with historical outcomes.</p>
+  <p class="meta">Based on the 100-stock, 2014–2023 experiment · 27,030 source-checked event records · Prepared 22 November 2026</p>
+</header>
+<details class="mobile-nav"><summary>Jump to a topic</summary><nav aria-label="Mobile contents"><a href="#overview">Architecture</a><a href="#market">Price inputs</a><a href="#memory">GRU</a><a href="#text">Text embeddings</a><a href="#attention">Attention</a><a href="#relationships">Correlations</a><a href="#decoder">Outputs</a><a href="#training">Training</a><a href="#validation">Validation</a><a href="#variants">Experiments</a></nav></details>
+
+<section id="task">
+  <h2><span class="number">01 · The task</span>What are we asking the network to predict?</h2>
+  <p>For each company, we predict the next trading session’s <strong>open, high, low and close</strong>, usually shortened to <strong>OHLC</strong>.</p>
+  <div class="table-wrap"><table><thead><tr><th>Price</th><th>Meaning</th></tr></thead><tbody><tr><td>Open</td><td>The first trading price of the session.</td></tr><tr><td>High</td><td>The highest price during the session.</td></tr><tr><td>Low</td><td>The lowest price during the session.</td></tr><tr><td>Close</td><td>The final trading price of the session.</td></tr></tbody></table></div>
+  <p>Imagine a stock closes today at $100. We ask: “Using information available by today’s cutoff, what will tomorrow’s four prices be?” This is an illustrative example, not a saved forecast.</p>
+  <p>During training, tomorrow has already happened in our historical dataset. We hide tomorrow’s observed prices while making the prediction, then reveal them to calculate the error.</p>
+  <div class="note"><strong>A neural network learns adjustable numbers called weights.</strong> Training repeatedly changes these weights to reduce historical errors. An <em>embedding</em> is a list of numbers representing something, such as a company or a piece of text.</div>
+</section>
+
+<section id="overview">
+  <h2><span class="number">02 · The architecture</span>Two information sources, one forecast.</h2>
+  <figure style="margin:0" aria-label="Price history passes through a GRU. Event text passes through a frozen encoder, event attention and peer routing. Their representations combine before candle prediction.">
+    <div class="split">
+      <div class="branch"><h3>Market-history branch</h3><ol class="flow"><li>Prices and trading volume<span>30 sessions · 19 features each</span></li><li>Learned input transformation<span>19 numbers → 32 numbers, plus company identity</span></li><li>GRU memory<span>A 32-number summary for each stock</span></li></ol></div>
+      <div class="branch"><h3>Event-information branch</h3><ol class="flow"><li>Event description and source quotation<span>Only eligible, source-checked records</span></li><li>Frozen text encoder<span>A 768-number representation per event</span></li><li>Projection, attention and peer routing<span>A direct event contribution and peer contribution</span></li></ol></div>
+    </div>
+    <div class="merge"><b>Combine:</b> local stock summary + direct event contribution + peer event contribution<br><span aria-hidden="true">↓</span><br><strong>Prediction head → valid OHLC candle</strong></div>
+    <figcaption>The stock summary also supplies the query used by event attention. The diagram shows the reference model; optional experiments are described later.</figcaption>
+  </figure>
+  <p>The reference configuration is <strong>FinSTAK without learned decay</strong>. Other experiments switch components on, replace them, or remove them. We did not put every experimental technique into the reference model.</p>
+</section>
+
+<section id="market">
+  <h2><span class="number">03 · The numerical inputs</span>How do prices become an embedding?</h2>
+  <p>Each stock supplies 19 measurements per session.</p>
+  <div class="table-wrap"><table><thead><tr><th>Group</th><th>Number</th><th>Contents</th></tr></thead><tbody><tr><td>Normalized prices</td><td>4</td><td>Open, high, low and close.</td></tr><tr><td>Normalized volume</td><td>1</td><td>Log-transformed trading volume, scaled separately.</td></tr><tr><td>Derived features</td><td>14</td><td>Returns, candle body, range, wick sizes, volume change, recent variability, position relative to a short moving average, and history-availability flags.</td></tr></tbody></table></div>
+  <h3>First, make the scales comparable</h3>
+  <p>A $20 stock and a $500 stock have different raw price levels. We normalize OHLC using shared price statistics from the trailing <strong>90 observed sessions</strong>. Volume has separate normalization. Remaining feature scalers are fitted using training-period data.</p>
+  <h3>Then, learn useful combinations</h3>
+  <p>A <strong>linear layer</strong> transforms the day’s 19 features into 32 numbers. It learns weighted combinations of the input measurements. We add a separate, learned 32-number <strong>company embedding</strong> identifying which company the observation belongs to.</p>
+  <div class="dimension"><strong>19 features</strong><span aria-hidden="true">→</span><strong>32 numbers</strong><span>+ company embedding</span></div>
+  <p>The company embedding begins with random values and changes during training. It is not a company description supplied by a language model, and its individual coordinates do not have predefined meanings.</p>
+</section>
+
+<section id="memory">
+  <h2><span class="number">04 · Sequence memory</span>What does the GRU do?</h2>
+  <p>A <strong>Gated Recurrent Unit</strong>, or GRU, processes a sequence in order. It reads one session, updates its memory, then reads the next.</p>
+  <div class="memory" aria-label="Session 1 to session 2 to later sessions to session 30 to final summary"><span class="day">Session 1</span><span class="arrow" aria-hidden="true">→</span><span class="day">Session 2</span><span class="arrow" aria-hidden="true">→ … →</span><span class="day">Session 30</span><span class="arrow" aria-hidden="true">→</span><span class="day"><strong>32-number summary</strong></span></div>
+  <p>Its gates act like adjustable valves. They learn how much previous information to retain and how much new information to incorporate. The model may learn that a recent large movement matters more than an older small movement; we do not manually tell it which pattern to remember.</p>
+  <p><strong>The same GRU weights are shared across all 100 companies.</strong> We do not train 100 separate GRUs. Each company has its own input sequence and company embedding.</p>
+  <div class="note">Memory is recomputed for each historical window. The GRU does not carry an unlimited memory across all ten years. In this implementation it summarizes market history, rather than a recurrent history of past event-graph states.</div>
+</section>
+
+<section id="text">
+  <h2><span class="number">05 · Text embeddings</span>How does a sentence become 768 numbers?</h2>
+  <p>Consider an illustrative event: <em>“Company A announces an acquisition.”</em> The embedding input includes the event description and its supporting source quotation.</p>
+  <ol>
+    <li><strong>Tokenize.</strong> Split the text into smaller pieces called tokens.</li>
+    <li><strong>Process the context.</strong> The pretrained text model calculates a representation for each token while considering surrounding text.</li>
+    <li><strong>Pool.</strong> Average the token representations, ignoring artificial padding used to make batches equal in length.</li>
+    <li><strong>Normalize vector length.</strong> Scale the resulting list so its mathematical length is one.</li>
+    <li><strong>Cache the result.</strong> Save a 768-number embedding so we can reuse it during training.</li>
+  </ol>
+  <p>The reference text encoder is <strong>EmbeddingGemma 2</strong>. Its input is prefixed with the recorded classification-task instruction. Text beyond its configured limit is rejected rather than silently cut off.</p>
+  <p>The 768 coordinates are not named financial indicators. Coordinate 12 does not automatically mean “acquisition strength.” Related texts may receive related representations, but their forecasting usefulness still needs to be learned and tested.</p>
+  <div class="note"><strong>Frozen means unchanged during FinSTAK training.</strong> The pretrained text encoder produces the cached vectors before forecasting training. FinSTAK does not update the encoder’s weights each time a price prediction is wrong.</div>
+  <h3>How do 768 numbers interact with 32 stock numbers?</h3>
+  <p>A trainable projection transforms <strong>768 → 32</strong>. We add a learned 32-number category embedding—for example, earnings or litigation. These transformations adapt the fixed text representation to the forecasting task.</p>
+  <div class="table-wrap"><table><thead><tr><th>Representation</th><th>Size</th><th>What changes during FinSTAK training?</th></tr></thead><tbody><tr><td>Cached event-text vector</td><td>768</td><td>It stays fixed.</td></tr><tr><td>Projected event representation</td><td>32</td><td>The projection weights learn.</td></tr><tr><td>Company identity embedding</td><td>32</td><td>The embedding values learn.</td></tr><tr><td>Event-category embedding</td><td>32</td><td>The embedding values learn.</td></tr><tr><td>Stock-history summary</td><td>32</td><td>The GRU and input transformations learn.</td></tr></tbody></table></div>
+  <p>Matching vector sizes allows combination. It does not automatically give the vectors identical meanings; training learns useful relationships between them.</p>
+  <details><summary>What changes in the FinBERT experiment?</summary><p>We replace the frozen text encoder with FinBERT while keeping event records and routing arrays matched. Long texts are split into chunks, their token representations are pooled across chunks, and the output vector is normalized. FinBERT is also frozen during forecasting training.</p></details>
+</section>
+
+<section id="attention">
+  <h2><span class="number">06 · Choosing useful information</span>What is attention?</h2>
+  <p>Imagine answering a question while looking through several reference notes. Attention learns which notes deserve more weight for that question.</p>
+  <div class="table-wrap"><table><thead><tr><th>Attention term</th><th>Role in FinSTAK</th><th>Analogy</th></tr></thead><tbody><tr><td>Query</td><td>A learned transformation of the stock-history summary.</td><td>The question being asked.</td></tr><tr><td>Key</td><td>A learned transformation of an eligible event representation.</td><td>The information used to judge whether a note is relevant.</td></tr><tr><td>Value</td><td>Another learned transformation of that event representation.</td><td>The information the note contributes.</td></tr></tbody></table></div>
+  <p>The network compares queries and keys, calculates relevance scores, and converts the scores into nonnegative attention weights. It then forms a weighted combination of the value vectors.</p>
+  <p>There are <strong>four attention heads</strong>: four parallel learned scoring systems, each operating on eight dimensions of the 32-dimensional representation. We do not prescribe a meaning such as “earnings specialist” for a particular head.</p>
+  <p>A learned <strong>null option</strong> allows the model to put weight on contributing no event message. It is not forced to treat one of the available events as useful.</p>
+  <p>The resulting 32-number event contribution is called a <em>shock</em> in the code. Here, “shock” means a learned contribution—not a demonstrated causal effect.</p>
+  <div class="warning"><strong>Attention is not a probability that the news is true.</strong> All 27,030 exported event-confidence fields in this expanded study are null. Event attention uses unit source weights; calibrated confidence-weighted event edges were not tested.</div>
+</section>
+
+<section id="relationships">
+  <h2><span class="number">07 · Correlations and graph connections</span>What is correlated with what?</h2>
+  <div class="table-wrap"><table><thead><tr><th>Relationship</th><th>Meaning</th><th>How we use it</th></tr></thead><tbody><tr><td>Text similarity</td><td>Two texts have related meanings.</td><td>Represented by the text encoder; not used to construct this company graph.</td></tr><tr><td>Stock-return correlation</td><td>Two companies’ returns have tended to move together.</td><td>Selects company-to-company connections.</td></tr><tr><td>Learned attention relevance</td><td>An event representation appears useful for a stock’s forecast.</td><td>Learned from the forecasting loss.</td></tr></tbody></table></div>
+  <div class="note"><strong>The company graph is built from stock-return correlation, not embedding similarity.</strong> Correlation does not establish that one company causes another to move.</div>
+  <p>At each decision date, we calculate correlations using the previous <strong>60 observed log returns</strong>. Each stock receives up to <strong>three positive-correlation peers</strong>, retaining connections with correlation of at least <strong>0.2</strong>.</p>
+  <p>An event first enters its explicitly identified company. The graph can then pass that company’s <strong>event contribution</strong> to related companies. Peer attention combines learned relevance with the correlation weight.</p>
+  <p>In the reference model, peer links carry event contributions, rather than entire stock-history representations. The T-GCN-style experimental control uses a different price-information route.</p>
+  <div class="formula">Final stock representation = local history summary<br>+ direct event contribution<br>+ peer event contribution</div>
+  <details><summary>When is an event eligible, and does it eventually expire?</summary><p>The recorded decision cutoff is 23:59:59 UTC on a trading session. News becomes eligible two calendar days after its reported publication time—an assumed conservative delay, not a verified historical arrival time. SEC availability follows the later filing/UTC acceptance date. Category age limits allow up to 90 sessions for earnings, 500 for litigation and 15 for other categories, subject to explicit validity boundaries. “No learned decay” disables learned soft fading, while these eligibility and age limits still apply.</p></details>
+</section>
+
+<section id="decoder">
+  <h2><span class="number">08 · The prediction head</span>How do the numbers become a valid candle?</h2>
+  <p>A <strong>head</strong> is the small final network that converts a representation into the output we need. Our price head applies <strong>LayerNorm</strong>, which rescales the internal representation, followed by a linear layer producing four values.</p>
+  <p>The decoder interprets them as an opening prediction, a closing prediction, an upper excursion and a lower excursion. The excursions pass through <strong>softplus</strong>, a function that makes them positive.</p>
+  <div class="formula">High = higher of predicted open and close + positive upper excursion<br>Low = lower of predicted open and close − positive lower excursion</div>
+  <p>These calculations happen in log-price coordinates. We then convert them back to prices relative to the observed decision-day close.</p>
+  <p>The construction guarantees that the predicted high is at least as high as the predicted open and close, and the predicted low is at least as low as both.</p>
+  <div class="warning"><strong>A valid candle is not necessarily an accurate candle.</strong> The output structure prevents impossible OHLC ordering; training still has to learn useful forecasts.</div>
+</section>
+
+<section id="training">
+  <h2><span class="number">09 · Learning from mistakes</span>What happens in one training step?</h2>
+  <p>A <strong>batch</strong> is a group of examples processed before a weight update. Our batch contains 16 complete decision dates, each containing all 100 stocks: <strong>1,600 stock examples</strong>.</p>
+  <div class="dimension" aria-label="Batch shape: 16 dates times 100 stocks times 30 sessions times 19 features"><strong>16</strong><span>dates ×</span><strong>100</strong><span>stocks ×</span><strong>30</strong><span>sessions ×</span><strong>19</strong><span>features</span></div>
+  <div class="stepper" id="training-walkthrough">
+    <ol class="step-list" aria-label="Training stages"><li class="current" aria-current="step">1. Prepare</li><li>2. Predict</li><li>3. Score</li><li>4. Backpropagate</li><li>5. Update</li></ol>
+    <div class="stage" aria-live="polite" aria-atomic="true"><h3 id="stage-title">Prepare a historical batch</h3><div class="stage-shape" id="stage-shape">16 dates × 100 stocks</div><p id="stage-description">Gather the 30-session history, eligible events and peer links for each date. Keep the actual next-session OHLC separate as the training target.</p></div>
+    <div class="pulse-path" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span></div>
+    <div class="controls"><span class="step-count" id="step-count">Stage 1 of 5</span><button id="previous-stage" type="button" disabled>Previous stage</button><button id="next-stage" class="primary" type="button">Next stage</button></div>
+  </div>
+  <noscript><p>The training stages are: prepare a historical batch, predict prices, calculate error, backpropagate gradients, and update trainable weights. The explanation below covers each calculation without requiring JavaScript.</p></noscript>
+  <h3>Predict, calculate error, and adjust weights</h3>
+  <ol><li><strong>Forward pass:</strong> calculate stock summaries, event attention, peer messages and OHLC predictions.</li><li><strong>Loss:</strong> compare the predictions with the actual historical next-session prices.</li><li><strong>Backpropagation:</strong> calculate gradients—how changing each trainable weight would affect the loss.</li><li><strong>Gradient clipping:</strong> limit the total gradient size to prevent excessively large updates.</li><li><strong>Optimizer update:</strong> change trainable weights, then continue with another batch.</li></ol>
+  <p>The default loss averages two groups of <strong>squared errors</strong>: open/close errors and high/low errors. It uses standardized log-price targets so different output scales are accounted for.</p>
+  <div class="warning"><strong>Training loss and report metric differ.</strong> Training uses standardized squared error. Checkpoint selection and the headline price report use normalized absolute error, or MAE.</div>
+  <div class="table-wrap"><table><thead><tr><th>Training setting</th><th>Value</th><th>Beginner explanation</th></tr></thead><tbody><tr><td>Optimizer</td><td>AdamW</td><td>Uses gradient history to adapt weight updates.</td></tr><tr><td>Learning rate</td><td>0.001</td><td>Controls the scale of weight updates.</td></tr><tr><td>Weight decay</td><td>0.001</td><td>Discourages unnecessarily large weights.</td></tr><tr><td>Gradient norm limit</td><td>1.0</td><td>Rescales gradients if their total norm becomes too large.</td></tr></tbody></table></div>
+  <p>The GRU, company/category embeddings, event projection, attention, active routing layers and active prediction heads learn. The cached text embeddings and pretrained text encoder stay fixed. Dropout is not a component of this reference ScaleFinSTAK network.</p>
+  <details><summary>A little more mathematical detail about the targets</summary><p>Each price target is log(next-session price / observed decision-day close). Training divides prediction errors by training-fitted target scales before squaring them. The open/close group and high/low group are averaged equally in the default objective. At evaluation, log-ratio predictions are converted back to prices, then absolute error is divided by the observed decision-day close.</p></details>
+</section>
+
+<section id="validation">
+  <h2><span class="number">10 · Evaluating learning</span>When does training stop?</h2>
+  <p>An <strong>epoch</strong> is one pass through all training examples. Training dates are shuffled between epochs, but the historical sessions inside each example remain in order.</p>
+  <div class="table-wrap"><table><thead><tr><th>Test fold</th><th>Train through</th><th>Validation year</th><th>Test year</th></tr></thead><tbody><tr><td>First</td><td>2019</td><td>2020</td><td>2021</td></tr><tr><td>Second</td><td>2020</td><td>2021</td><td>2022</td></tr><tr><td>Third</td><td>2021</td><td>2022</td><td>2023</td></tr></tbody></table></div>
+  <p>Training begins in 2014. In each fold, we fit scalers using training data and exclude examples whose next-session labels cross a split boundary.</p>
+  <ol><li><strong>Training:</strong> update weights on training examples.</li><li><strong>Validation:</strong> after each epoch, measure OHLC MAE without updating weights.</li><li><strong>Checkpoint:</strong> save the weights when validation performance improves.</li><li><strong>Early stopping:</strong> stop after five epochs without sufficient improvement, or at 25 epochs.</li><li><strong>Test:</strong> evaluate the selected checkpoint on its later historical test period.</li></ol>
+  <h3>Why train three times?</h3>
+  <p>Random starting weights and batch order can change what a network learns. We train each configuration using three random <strong>seeds: 7, 19 and 41</strong>. Each run has its own validation-selected checkpoint.</p>
+  <p>We average the three selected models’ <strong>price forecasts</strong> to form an ensemble. We do not average their weights.</p>
+  <div class="note"><strong>17 configurations × 3 seeds × 3 test folds = 153 training fits.</strong> The fresh run repeated the same historical tests; it is reproducibility evidence, not a new untouched test period.</div>
+</section>
+
+<section id="variants">
+  <h2><span class="number">11 · The experiments</span>What other components did we test?</h2>
+  <p>An <strong>ablation</strong> changes or removes a component to measure its contribution. These are separate model configurations, not a list of techniques all active in the reference model.</p>
+  <div class="table-wrap"><table><thead><tr><th>Technique</th><th>What it does</th></tr></thead><tbody>
+    <tr><td>Price-only GRU</td><td>Removes the event branch to measure what market history alone can do.</td></tr><tr><td>No learned decay</td><td>Uses event attention and correlation peers, without learned soft fading. Eligibility and hard age limits remain.</td></tr><tr><td>Exponential decay</td><td>Learns to reduce event influence as the event ages.</td></tr><tr><td>LSTM</td><td>Replaces the price-only GRU with a different sequence-memory architecture.</td></tr><tr><td>T-GCN-style control</td><td>Passes correlation-based price information before sequence encoding.</td></tr><tr><td>Isolated wick gradients</td><td>Blocks high/low loss gradients from changing designated shared features and predicted body bounds. This limits interference with the open/close pathway.</td></tr><tr><td>Shared OHLCV</td><td>Adds a trading-volume prediction head. Price and volume tasks share representations.</td></tr><tr><td>Uncertainty weighting</td><td>Learns relative weights for the training-task losses. It does not by itself produce a calibrated price-confidence interval.</td></tr><tr><td>PCGrad</td><td>Projects conflicting task gradients to reduce opposing updates on shared parameters. It does not guarantee that all task conflicts disappear.</td></tr><tr><td>Hybrid decay</td><td>Mixes faster exponential fading with slower power-law fading.</td></tr><tr><td>Sector routing</td><td>Passes event contributions through static company–sector–company groups instead of correlation peers, excluding the recipient’s own contribution.</td></tr><tr><td>Primary-discloser filter</td><td>Restricts eligible events using the recorded automated primary-discloser check.</td></tr><tr><td>Two-layer GRU</td><td>Stacks a second sequence-processing layer.</td></tr><tr><td>Auxiliary direction task</td><td>Adds an up/down classification head and classification loss.</td></tr><tr><td>FinBERT embeddings</td><td>Changes the frozen event-text representation while retaining matched events and routing.</td></tr><tr><td>Dual streams</td><td>Gives valuation and dispersion tasks separate trainable pathways.</td></tr><tr><td>Combined recipe</td><td>Tests a 20-session two-layer GRU, FinBERT, hybrid decay, sector routing, primary-discloser filtering, isolated wicks, volume, auxiliary direction and PCGrad together.</td></tr>
+  </tbody></table></div>
+  <p>Volume-capable variants add a normalized log-volume squared-error task. The auxiliary direction head uses a binary classification loss. PCGrad changes how task gradients are combined; uncertainty weighting changes how their losses are weighted. All configurations still select checkpoints using validation OHLC MAE.</p>
+  <div class="warning"><strong>More components did not automatically mean better predictions.</strong> No-decay FinSTAK reached 0.964184% pooled OHLC error; the combined recipe reached 0.973310%, where lower is better. Hybrid decay’s tiny observed advantage was inconclusive under the exploratory paired interval.</div>
+</section>
+
+<section id="glossary">
+  <h2><span class="number">12 · Keep these terms handy</span>A short vocabulary.</h2>
+  <dl class="terms"><div><dt>Weight</dt><dd>An adjustable number inside the network.</dd></div><div><dt>Embedding</dt><dd>A list of numbers representing an item, identity or text.</dd></div><div><dt>Frozen</dt><dd>Held fixed during the forecasting model’s training.</dd></div><div><dt>Attention</dt><dd>A learned mechanism for weighting incoming information.</dd></div><div><dt>Gradient</dt><dd>A calculation describing how a weight change would affect loss.</dd></div><div><dt>Loss</dt><dd>The error signal used to train the model.</dd></div><div><dt>Batch</dt><dd>A group of examples processed before a weight update.</dd></div><div><dt>Epoch</dt><dd>One pass through all training examples.</dd></div><div><dt>Checkpoint</dt><dd>A saved set of model weights and associated training information.</dd></div><div><dt>Ensemble</dt><dd>A forecast formed by combining predictions from several trained models.</dd></div></dl>
+  <h3>What is supplied, and what is learned?</h3>
+  <p>Source records, cached text vectors and return correlations are prepared from available data. The forecasting network learns how to use them by repeatedly comparing predictions with historical outcomes.</p>
+  <details><summary>Implementation sources and scope</summary><p>This guide describes the restored 100-stock implementation: <code>stak_graph/models/scale_finstak.py</code>, <code>models/finstak.py</code>, <code>experiments/scale_panel.py</code>, <code>experiments/scale_run.py</code>, and <code>embeddings/backend.py</code>, <code>finbert.py</code> and <code>pipeline.py</code>. These reside under the restored study’s frozen <code>source_snapshot</code>.</p><p>The scale-study event collection uses rule-based source-evidence extraction, not generative LLM relationship extraction. The architecture is a project-specific recurrent encoder with typed attention, not a full HGT reproduction. Event-source traceability and attention weights do not establish causal explanations. The study does not implement a historical supply-chain network or a live market-data service.</p></details>
+</section>
+<footer>This guide explains the implemented historical research model. All examples are illustrative unless explicitly identified as experiment settings or measured results. The file works offline; diagrams and the training walkthrough require no external services.</footer>
+</main>
+</div>
+<script>
+(() => {
+  const root = document.getElementById('training-walkthrough');
+  const stages = [
+    ['Prepare a historical batch','16 dates × 100 stocks','Gather the 30-session history, eligible events and peer links for each date. Keep the actual next-session OHLC separate as the training target.'],
+    ['Make the forward prediction','History + events + peers → OHLC','The GRU summarizes market history. Event attention and peer routing contribute information. The decoder constructs an ordered, valid candle. No future observed prices are used as forecasting inputs.'],
+    ['Calculate the training loss','Predicted next-session values ↔ observed values','Compare predicted and observed standardized log-price targets. Average the squared-error groups for open/close and high/low. Larger mistakes create a larger training penalty.'],
+    ['Backpropagate the error','Loss → gradients for trainable weights','Calculate how each active trainable parameter affects the loss. The cached text vectors remain fixed. Gradient clipping limits the total gradient norm before the update.'],
+    ['Update the weights','AdamW update → next historical batch','AdamW changes trainable weights using learning rate 0.001 and weight decay 0.001. Continue through the training examples; after the epoch, measure validation error without updating weights.']
+  ];
+  const title = document.getElementById('stage-title');
+  const shape = document.getElementById('stage-shape');
+  const description = document.getElementById('stage-description');
+  const count = document.getElementById('step-count');
+  const previous = document.getElementById('previous-stage');
+  const next = document.getElementById('next-stage');
+  const labels = Array.from(root.querySelectorAll('.step-list li'));
+  const marks = Array.from(root.querySelectorAll('.pulse-path span'));
+  let index = 0;
+  function render() {
+    const item = stages[index];
+    title.textContent = item[0]; shape.textContent = item[1]; description.textContent = item[2];
+    count.textContent = `Stage ${index + 1} of ${stages.length}`;
+    previous.disabled = index === 0;
+    next.textContent = index === stages.length - 1 ? 'Back to first stage' : 'Next stage';
+    labels.forEach((label,i) => {label.classList.toggle('current', i === index); if(i === index) label.setAttribute('aria-current','step'); else label.removeAttribute('aria-current');});
+    marks.forEach((mark,i) => mark.classList.toggle('on',i <= index));
+  }
+  previous.addEventListener('click', () => {index = Math.max(0,index-1);render();});
+  next.addEventListener('click', () => {index = (index+1)%stages.length;render();});
+  render();
+})();
+</script>
+</body>
+</html>

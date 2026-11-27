@@ -1,0 +1,7 @@
+{
+  "checkpoint_pairs": 153,
+  "all_state_tensors_identical": true,
+  "different_tensors": 0,
+  "max_tensor_difference": 0.0,
+  "note": "Serialized checkpoint files can have different bytes even when tensors are identical."
+}

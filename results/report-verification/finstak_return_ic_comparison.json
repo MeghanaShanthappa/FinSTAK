@@ -1,0 +1,75 @@
+{
+  "definition": "Per-date cross-sectional Pearson and Spearman correlation between predicted and realized next-session close-to-close log returns; arithmetic mean over 749 dates, 100 stocks per date.",
+  "horizon": "one trading session",
+  "test_years": "2021-2023",
+  "analysis_status": "Post-hoc diagnostic; no new training; no significance claim.",
+  "comparison_warning": "Not matched to KiT daily resolution, which uses a 20-session forecast horizon and a different market universe and test period.",
+  "models": {
+    "no_events": {
+      "return_IC": 0.0023343708378687645,
+      "return_RankIC": -0.0010649507943043832,
+      "dates": 749,
+      "annual": {
+        "2021": {
+          "dates": 251,
+          "return_IC": 0.00975544954697298,
+          "return_RankIC": 0.012992191075998609
+        },
+        "2022": {
+          "dates": 250,
+          "return_IC": -0.008772088243095003,
+          "return_RankIC": -0.02180576101527923
+        },
+        "2023": {
+          "dates": 248,
+          "return_IC": 0.00601954831470661,
+          "return_RankIC": 0.005615936083911984
+        }
+      }
+    },
+    "no_decay": {
+      "return_IC": 0.007389521297777822,
+      "return_RankIC": 0.0036765494866793425,
+      "dates": 749,
+      "annual": {
+        "2021": {
+          "dates": 251,
+          "return_IC": 0.011359554610224748,
+          "return_RankIC": 0.019907745557083193
+        },
+        "2022": {
+          "dates": 250,
+          "return_IC": -0.005982236231238436,
+          "return_RankIC": -0.023856527355243896
+        },
+        "2023": {
+          "dates": 248,
+          "return_IC": 0.016851057672091874,
+          "return_RankIC": 0.015004126086717423
+        }
+      }
+    },
+    "hybrid_decay": {
+      "return_IC": 0.007128786882435937,
+      "return_RankIC": 0.0035239204488643544,
+      "dates": 749,
+      "annual": {
+        "2021": {
+          "dates": 251,
+          "return_IC": 0.015331364208354509,
+          "return_RankIC": 0.022544970275353113
+        },
+        "2022": {
+          "dates": 250,
+          "return_IC": -0.005998737742362911,
+          "return_RankIC": -0.02387928273899771
+        },
+        "2023": {
+          "dates": 248,
+          "return_IC": 0.012060376589670413,
+          "return_RankIC": 0.011896974039658054
+        }
+      }
+    }
+  }
+}

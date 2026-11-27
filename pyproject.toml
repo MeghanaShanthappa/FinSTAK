@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stak-graph"
+version = "0.2.0"
+description = "Sourced financial events, embeddings and causal temporal stock graphs"
+requires-python = ">=3.10"
+dependencies = ["jsonschema>=4.18,<5"]
+
+[project.optional-dependencies]
+local = [
+  "torch>=2.6,<3",
+  "transformers>=4.56,<6",
+  "xgrammar>=0.1.18,<1",
+]
+embeddings = ["torch>=2.6,<3", "transformers>=5.18,<6"]
+model = ["torch>=2.6,<3"]
+experiment = ["torch>=2.6,<3", "numpy>=1.26,<3", "pandas>=1.5,<4", "exchange-calendars>=4.11,<5"]
+benchmark = [
+  "torch>=2.6,<3", "numpy>=1.26,<3", "pandas>=2,<4", "transformers>=5.18,<6",
+  "einops>=0.8,<1", "accelerate>=1.1,<2", "reformer-pytorch==1.4.4", "colt5-attention==0.11.2",
+]
+
+[project.scripts]
+stak-extract = "stak_graph.extraction.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["stak_graph*"]
+
+[tool.setuptools.package-data]
+"stak_graph.extraction" = ["prompts/*.txt"]

@@ -1,0 +1,8 @@
+{
+  "archive": "/home/mshanthappa/STAK-Graph/results/scale_100x10_v1_retained/FinSTAK_100stocks_2014-2023_research.tar.gz",
+  "bytes": 750002396,
+  "sha256": "5779df4319d688e7084a8adfac94c2d26835c2d4d60ce552d882f4fc500dac74",
+  "archive_members_verified": 1624,
+  "duplicate_vector_files_omitted": false,
+  "restore_optional_vectors": "python delivery_scripts/restore_scale_embeddings.py --study STUDY_ROOT"
+}

@@ -1,0 +1,214 @@
+{
+  "scope": "Fresh reproduction; weighted aggregation of saved annual test metrics; post-training independent replay and uncertainty analysis pending.",
+  "models": {
+    "events": {
+      "samples": 74900,
+      "MAE_percent": 0.9649604239342101,
+      "direction_accuracy": 0.5101869158878506,
+      "within_1pct_percent": 66.74432576769026,
+      "annual_MAE_percent": {
+        "2021": 0.8823958612369741,
+        "2022": 1.1643222485615834,
+        "2023": 0.8475541702251899
+      }
+    },
+    "lstm": {
+      "samples": 74900,
+      "MAE_percent": 0.9652312385127071,
+      "direction_accuracy": 0.5078104138851802,
+      "within_1pct_percent": 66.73765020026703,
+      "annual_MAE_percent": {
+        "2021": 0.8822822052209576,
+        "2022": 1.165504018214078,
+        "2023": 0.8472958047662815
+      }
+    },
+    "no_decay": {
+      "samples": 74900,
+      "MAE_percent": 0.9641843612042114,
+      "direction_accuracy": 0.5106809078771696,
+      "within_1pct_percent": 66.79138851802404,
+      "annual_MAE_percent": {
+        "2021": 0.8817958987122457,
+        "2022": 1.1626786672671487,
+        "2023": 0.8474743917273927
+      }
+    },
+    "no_events": {
+      "samples": 74900,
+      "MAE_percent": 0.9659178415182885,
+      "direction_accuracy": 0.5073164218958611,
+      "within_1pct_percent": 66.6822429906542,
+      "annual_MAE_percent": {
+        "2021": 0.8840541797548207,
+        "2022": 1.1657189777087291,
+        "2023": 0.847359353836919
+      }
+    },
+    "previous_OHLC": {
+      "samples": 74900,
+      "MAE_percent": 1.2310862911670575,
+      "direction_accuracy": 0.48555407209612816,
+      "within_1pct_percent": 55.086782376502,
+      "annual_MAE_percent": {
+        "2021": 1.1296088261505361,
+        "2022": 1.4652903695377908,
+        "2023": 1.097698485225378
+      }
+    },
+    "previous_close": {
+      "samples": 74900,
+      "MAE_percent": 1.136851820664915,
+      "direction_accuracy": 0.48555407209612816,
+      "within_1pct_percent": 59.55540720961282,
+      "annual_MAE_percent": {
+        "2021": 1.045839654964819,
+        "2022": 1.3636975602334955,
+        "2023": 1.0002897992882174
+      }
+    },
+    "tgcn": {
+      "samples": 74900,
+      "MAE_percent": 0.9655372915133388,
+      "direction_accuracy": 0.5092256341789052,
+      "within_1pct_percent": 66.69225634178905,
+      "annual_MAE_percent": {
+        "2021": 0.8827760828358409,
+        "2022": 1.1655214972911003,
+        "2023": 0.8477026622133855
+      }
+    },
+    "combined": {
+      "samples": 74900,
+      "MAE_percent": 0.9733100811336869,
+      "direction_accuracy": 0.5070761014686248,
+      "within_1pct_percent": 66.55340453938585,
+      "annual_MAE_percent": {
+        "2021": 0.8899977063722447,
+        "2022": 1.1726939911345293,
+        "2023": 0.856638422121233
+      }
+    },
+    "direction_aux": {
+      "samples": 74900,
+      "MAE_percent": 0.9656173825464347,
+      "direction_accuracy": 0.5076902536715621,
+      "within_1pct_percent": 66.70794392523365,
+      "annual_MAE_percent": {
+        "2021": 0.8830451422526493,
+        "2022": 1.1647991714834591,
+        "2023": 0.8484003868991927
+      }
+    },
+    "dual_stream": {
+      "samples": 74900,
+      "MAE_percent": 0.9659846968431803,
+      "direction_accuracy": 0.5094926568758344,
+      "within_1pct_percent": 66.69158878504673,
+      "annual_MAE_percent": {
+        "2021": 0.8814745381165677,
+        "2022": 1.1682040938703393,
+        "2023": 0.847666957260882
+      }
+    },
+    "finbert": {
+      "samples": 74900,
+      "MAE_percent": 0.9648567211900938,
+      "direction_accuracy": 0.5098130841121495,
+      "within_1pct_percent": 66.7690253671562,
+      "annual_MAE_percent": {
+        "2021": 0.8823318179769865,
+        "2022": 1.1641224545772682,
+        "2023": 0.8475071944146759
+      }
+    },
+    "hybrid_decay": {
+      "samples": 74900,
+      "MAE_percent": 0.9640003285563397,
+      "direction_accuracy": 0.5096261682242991,
+      "within_1pct_percent": 66.80740987983978,
+      "annual_MAE_percent": {
+        "2021": 0.8817609748601112,
+        "2022": 1.1632902610653413,
+        "2023": 0.8463374037599808
+      }
+    },
+    "isolated": {
+      "samples": 74900,
+      "MAE_percent": 0.9752483071587312,
+      "direction_accuracy": 0.5052069425901201,
+      "within_1pct_percent": 66.52069425901202,
+      "annual_MAE_percent": {
+        "2021": 0.8905554638694736,
+        "2022": 1.1777877949008249,
+        "2023": 0.8567927899413128
+      }
+    },
+    "primary_only": {
+      "samples": 74900,
+      "MAE_percent": 0.9655852569513378,
+      "direction_accuracy": 0.510547396528705,
+      "within_1pct_percent": 66.71662216288385,
+      "annual_MAE_percent": {
+        "2021": 0.8824259878563951,
+        "2022": 1.166034555463701,
+        "2023": 0.8476846598333532
+      }
+    },
+    "sector": {
+      "samples": 74900,
+      "MAE_percent": 0.965198858150008,
+      "direction_accuracy": 0.5087049399198932,
+      "within_1pct_percent": 66.6935914552737,
+      "annual_MAE_percent": {
+        "2021": 0.882477157621976,
+        "2022": 1.1644783136033556,
+        "2023": 0.8480346765741985
+      }
+    },
+    "two_layer": {
+      "samples": 74900,
+      "MAE_percent": 0.9644043564113466,
+      "direction_accuracy": 0.5078104138851802,
+      "within_1pct_percent": 66.79839786381842,
+      "annual_MAE_percent": {
+        "2021": 0.8824232992327317,
+        "2022": 1.1627757921774282,
+        "2023": 0.8474059145174431
+      }
+    },
+    "volume_pcgrad": {
+      "samples": 74900,
+      "MAE_percent": 0.9661391989954008,
+      "direction_accuracy": 0.50630173564753,
+      "within_1pct_percent": 66.68424566088117,
+      "annual_MAE_percent": {
+        "2021": 0.8836691789156024,
+        "2022": 1.1664309109954254,
+        "2023": 0.847699872543882
+      }
+    },
+    "volume_shared": {
+      "samples": 74900,
+      "MAE_percent": 0.9661945612385264,
+      "direction_accuracy": 0.5059946595460614,
+      "within_1pct_percent": 66.673564753004,
+      "annual_MAE_percent": {
+        "2021": 0.8834909140498256,
+        "2022": 1.166031202407133,
+        "2023": 0.8484504287877696
+      }
+    },
+    "volume_uncertainty": {
+      "samples": 74900,
+      "MAE_percent": 0.9665423798986285,
+      "direction_accuracy": 0.5051134846461949,
+      "within_1pct_percent": 66.63518024032042,
+      "annual_MAE_percent": {
+        "2021": 0.8840746772045693,
+        "2022": 1.1665391042964501,
+        "2023": 0.8483980745629564
+      }
+    }
+  }
+}
